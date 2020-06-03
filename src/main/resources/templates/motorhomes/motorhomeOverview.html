@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Motorhome overview</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+
+<div class="navbar">
+    <div class="dropdown">
+        <button class="dropbtn">Rentals
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/rentaloverview">Rental Overview</a>
+            <a href="/carsearch">Search For Motorhome And Create Rental Agreement</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Employees
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/employees">Employee Overview</a>
+            <a href="/createemployee">Create New Employee</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Customers
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/customers">Customer Overview</a>
+            <a href="/createcustomer">Create new Customer</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Motorhomes
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/motorhomeoverview">Motorhome Overview</a>
+            <a href="/createmotorhome">Create a new Motorhome Model</a>
+            <a href="/addtofleet">Add An Available Motorhome To Selection</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h1>Motorhomes</h1>
+    <table>
+        <tr>
+            <th>Motorhome ID</th>
+            <th>Price Per Day</th>
+            <th>Number Of Beds</th>
+            <th>Motorhome Model Name</th>
+        </tr>
+        <tr th:each="motorhome : ${motorhomes}">
+            <td th:text="${motorhome.motorhomeId}"></td>
+            <td th:text="${motorhome.pricePerDay}"></td>
+            <td th:text="${motorhome.maxSeats}"></td>
+            <td th:text="${motorhome.modelName}"></td>
+            <td><a th:href="@{/motorhome(motorhomeId=${motorhome.motorhomeId})}"><button class="btn btn-details"> Details </button></a></th>
+            <td><a th:href="@{/deletemotorhome(motorhomeId=${motorhome.motorhomeId})}"><button class="btn btn-del"> Delete </button></a></th>
+            <td><a th:href="@{/updatemotorhome(motorhomeId=${motorhome.motorhomeId})}"><button class="btn btn-ed"> Update </button></a></th>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

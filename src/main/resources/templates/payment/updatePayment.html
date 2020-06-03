@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update payment</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+
+<div class="navbar">
+    <div class="dropdown">
+        <button class="dropbtn">Rentals
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/rentaloverview">Rental Overview</a>
+            <a href="/carsearch">Search For Motorhome And Create Rental Agreement</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Employees
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/employees">Employee Overview</a>
+            <a href="/createemployee">Create New Employee</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Customers
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/customers">Customer Overview</a>
+            <a href="/createcustomer">Create new Customer</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Motorhomes
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/motorhomeoverview">Motorhome Overview</a>
+            <a href="/createmotorhome">Create a new Motorhome Model</a>
+            <a href="/addtofleet">Add An Available Motorhome To Selection</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <form action="/updatedrentalpayment" method="post">
+        <label for="rentalId">Rental ID</label>
+        <input type="number" name="rentalId" id="rentalId" th:value="${payment.rentalId}" readonly>
+        <br>
+        <label for="pricePerDay">Price Per Day</label>
+        <input type="number" name="pricePerDay" id="pricePerDay" th:value="${payment.pricePerDay}">
+        <br>
+        <label for="dropoffPrice">Dropoff Price</label>
+        <input type="number" name="dropoffPrice" id="dropoffPrice" th:value="${payment.dropoffPrice}">
+        <br>
+        <label for="accessoriesPrice">Accessories Price:</label>
+        <input type="number" name="accessoriesPrice" id="accessoriesPrice" th:value="${payment.accessoriesPrice}">
+        <br>
+        <label for="cancellationPrice">Cancellation Price</label>
+        <input type="number" name="cancellationPrice" id="cancellationPrice" th:value="${payment.cancellationPrice}">
+        <br>
+        <label for="fuelPrice">Fuel Price:</label>
+        <input type="number" name="fuelPrice" id="fuelPrice" th:value="${payment.fuelPrice}">
+        <br>
+        <label for="kilometersDrivenPrice">Kilometers Driven Price:</label>
+        <input type="number" name="kilometersDrivenPrice" id="kilometersDrivenPrice" th:value="${payment.kilometersDrivenPrice}">
+        <br>
+        <label for="totalPrice">Total Price:</label>
+        <input type="number" name="totalPrice" id="totalPrice" th:value="${payment.totalPrice}">
+        <br>
+        <button type="submit" name="submit" button class="btn btn-create">Update</button>
+    </form>
+</div>
+</body>
+</html>

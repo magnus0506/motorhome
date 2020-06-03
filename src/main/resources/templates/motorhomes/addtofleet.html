@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add to fleet</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+
+<div class="navbar">
+    <div class="dropdown">
+        <button class="dropbtn">Rentals
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/rentaloverview">Rental Overview</a>
+            <a href="/carsearch">Search For Motorhome And Create Rental Agreement</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Employees
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/employees">Employee Overview</a>
+            <a href="/createemployee">Create New Employee</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Customers
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/customers">Customer Overview</a>
+            <a href="/createcustomer">Create new Customer</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Motorhomes
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/motorhomeoverview">Motorhome Overview</a>
+            <a href="/createmotorhome">Create a new Motorhome Model</a>
+            <a href="/addtofleet">Add An Available Motorhome To Selection</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <h1>Add Motorhome To Available Lineup</h1>
+        <form action="/addedtofleet" method="post">
+            <label for="modelName">Model Name</label><br>
+            <input type="text" name="modelName" id="modelName">
+            <br>
+            <button type="submit" name="submit" button class="btn btn-create">Add To Lineup</button>
+        </form>
+</div>
+    <table>
+        <tr>
+            <th>Motorhome Model Name</th>
+        </tr>
+        <tr th:each="motorhome : ${motorhomes}">
+            <td th:text="${motorhome.modelName}"></td>
+        </tr>
+    </table>
+</body>
+</html>

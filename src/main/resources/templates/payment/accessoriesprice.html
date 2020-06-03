@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Accessories</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+<div class="navbar">
+    <div class="dropdown">
+        <button class="dropbtn">Rentals
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/rentaloverview">Rental Overview</a>
+            <a href="/carsearch">Search For Motorhome And Create Rental Agreement</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Employees
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/employees">Employee Overview</a>
+            <a href="/createemployee">Create New Employee</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Customers
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/customers">Customer Overview</a>
+            <a href="/createcustomer">Create new Customer</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Motorhomes
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/motorhomeoverview">Motorhome Overview</a>
+            <a href="/createmotorhome">Create a new Motorhome Model</a>
+            <a href="/addtofleet">Add An Available Motorhome To Selection</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <form action="/accessoriespricecalculated" method="post">
+
+        <H3>Choose Accessories</H3>
+        <label for="rentalId">Rental ID:</label><br>
+        <input type="number" name="rentalId" id="rentalId" th:value="${rentalid}">
+        <br>
+        <label for="cykelholder">Bikemount 400 kr</label>
+        <input type="number" id="cykelholder"  name="cykelholder">
+        <br>
+        <label for="sengelinned" class="inlinelabel">Bed Cover For All Beds - 200 kr</label>
+        <input type="number"  id="sengelinned" name="sengelinned">
+        <br>
+        <label for="barnesaede">Child Seat 200 kr</label>
+        <input type="number" id="barnesaede" name="barnesaede">
+        <br>
+        <label for="picnicbord" class="inlinelabel">Picnicbord Table With Chairs - 300 kr</label>
+        <input type="number" id="picnicbord" name="picnicbord">
+        <input type="submit" name="submit">
+    </form>
+    <!--    <ul>
+            <li th:each="payment : ${payments}">
+                <span th:text="${payment.cykelholder}"></span><br>
+                <span th:text="${payment.sengelinned}"></span><br>
+                <span th:text="${payment.barnesæde}"></span><br>
+                <span th:text="${payment.picnicbord}"></span>
+                </li>
+        </ul> -->
+</div>
+</body>
+</html>

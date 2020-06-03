@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Rental price details</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+
+<div class="navbar">
+    <div class="dropdown">
+        <button class="dropbtn">Rentals
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/rentaloverview">Rental Overview</a>
+            <a href="/carsearch">Search For Motorhome And Create Rental Agreement</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Employees
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/employees">Employee Overview</a>
+            <a href="/createemployee">Create New Employee</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Customers
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/customers">Customer Overview</a>
+            <a href="/createcustomer">Create new Customer</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Motorhomes
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/motorhomeoverview">Motorhome Overview</a>
+            <a href="/createmotorhome">Create a new Motorhome Model</a>
+            <a href="/addtofleet">Add An Available Motorhome To Selection</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h1>Details</h1>
+
+    <p>Rental ID: <span th:text="${payment.rentalId}"></span> </p>
+
+    <p>Price Per Day: <span th:text="${payment.pricePerDay}"></span></p>
+
+    <p>Drop Off Price: <span th:text="${payment.dropoffPrice}"></span> </p>
+
+    <p>Added Accessories: <span th:text="${payment.accessoriesPrice}"></span> </p>
+
+    <p>Cancellation Price: <span th:text="${payment.cancellationPrice}"></span> </p>
+
+    <p>Fuel Price: <span th:text="${payment.fuelPrice}"></span> </p>
+
+    <p>Kilometers Driven Price: <span th:text="${payment.kilometersDrivenPrice}"></span> </p>
+
+    <p>Total Price: <span th:text="${payment.totalPrice}"></span> </p>
+
+    <td><a th:href="@{/kilometerprice(rentalId=${payment.rentalId})}"><button class="btn btn-details"> Kilometers Driven - Calculator</button></a></td>
+    <td><a th:href="@{/dropoffprice(rentalId=${payment.rentalId})}"><button class="btn btn-details"> Dropoff Price- Calculator</button></a></td>
+    <td><a th:href="@{/fuelprice(rentalId=${payment.rentalId})}"><button class="btn btn-details"> Fuel Price- Calculator</button></a></td>
+    <td><a th:href="@{/cancelrental(rentalId=${payment.rentalId})}"><button class="btn btn-details"> Rental Cancellation - Calculator</button></a></td>
+    <td><a th:href="@{/accessoriesprice(rentalId=${payment.rentalId})}"><button class="btn btn-details"> Add Accessories</button></a></td>
+</div>
+</body>
+</html>

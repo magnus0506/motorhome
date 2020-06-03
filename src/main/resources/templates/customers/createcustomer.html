@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create customer</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+
+<div class="navbar">
+    <div class="dropdown">
+        <button class="dropbtn">Rentals
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/rentaloverview">Rental Overview</a>
+            <a href="/carsearch">Search For Motorhome And Create Rental Agreement</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Employees
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/employees">Employee Overview</a>
+            <a href="/createemployee">Create New Employee</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Customers
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/customers">Customer Overview</a>
+            <a href="/createcustomer">Create new Customer</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Motorhomes
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/motorhomeoverview">Motorhome Overview</a>
+            <a href="/createmotorhome">Create a new Motorhome Model</a>
+            <a href="/addtofleet">Add An Available Motorhome To Selection</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h1>Create customerr</h1>
+    <form action="/createdcustomer" method="post"> <!-- dette sker når vi klikker på submit (action)-->
+
+        <label for="customerFirstName">Customer First name</label><br>
+        <input type="text" name="customerFirstName" id="customerFirstName">
+        <br>
+        <label for="customerLastName">Customer Surname</label><br>
+        <input type="text" name="customerLastName" id="customerLastName">
+        <br>
+        <label for="customerBirthday">Customer Birthday: YYYY-MM-DD</label><br>
+        <input type="text" name="customerBirthday" id="customerBirthday" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])">
+        <br>
+        <label for="customerEmail">Customer Email</label><br>
+        <input type="email" name="customerEmail" id="customerEmail">
+        <br>
+        <label for="customerDriversLicense">Customer Drivers License Number:</label>
+        <input type="text" name="customerDriversLicense" id="customerDriversLicense">
+        <button type="submit" name="submit" button class="btn btn-create">Create</button>
+    </form>
+</div>
+</body>
+</html>
