@@ -14,7 +14,7 @@ CREATE TABLE customers (
   PRIMARY KEY (customerId)
 );
 INSERT INTO customers(customerId, customerFirstName, customerLastName, customerBirthday, customerEmail, customerDriversLicense)
-VALUES(3, 'Anders', 'Andersen', 1995-02-28, 'aa@motorhomenordic.dk', 2934992);
+VALUES(3, 'Anders', 'Andersen', '1995-02-28', 'aa@motorhomenordic.dk', 2934992);
 
 CREATE TABLE employees (
   employeeId int(11) NOT NULL AUTO_INCREMENT,
