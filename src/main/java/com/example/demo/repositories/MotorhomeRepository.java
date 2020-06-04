@@ -10,15 +10,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+//Lavet af Christoffer
+
 public class MotorhomeRepository {
     private Connection conn;
     public MotorhomeRepository() {this.conn = DatabaseConnectionManager.getDatabaseConnection();}
 
-
     public List<Motorhomes> listMotorhomes(){
         List<Motorhomes> allMotorhomes = new ArrayList<>();
         try{
-            PreparedStatement readMotorhomes = conn.prepareStatement("SELECT motorhomeId, pricePerDay, maxSeats, motorhomes.modelName FROM motorhomes INNER JOIN motorhomemodels ON motorhomes.modelName = motorhomemodels.modelName");
+            PreparedStatement readMotorhomes = conn.prepareStatement(
+                    "SELECT motorhomeId, pricePerDay, maxSeats, " + "motorhomes.modelName " +
+                    "FROM motorhomes INNER JOIN motorhomemodels ON motorhomes.modelName = motorhomemodels.modelName");
             ResultSet rs = readMotorhomes.executeQuery();
             while(rs.next()){
                 Motorhomes tempMotorhome = new Motorhomes();
@@ -27,7 +30,6 @@ public class MotorhomeRepository {
                 tempMotorhome.setMaxSeats(rs.getInt(3));
                 tempMotorhome.setModelName(rs.getString(4));
                 allMotorhomes.add(tempMotorhome);
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -43,14 +45,10 @@ public class MotorhomeRepository {
             createMotorhome.setInt(2, motorhome.getMaxSeats());
             createMotorhome.setString(3, motorhome.getModelName());
             createMotorhome.executeUpdate();
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
-
-
     }
 
     public void addToFleet(Motorhomes motorhome){
@@ -85,9 +83,7 @@ public class MotorhomeRepository {
             e.printStackTrace();
         }
         return false;
-
     }
-
 
     public Motorhomes read(int motorhomeId) {
         Motorhomes motorhomeToReturn = new Motorhomes();
@@ -101,7 +97,6 @@ public class MotorhomeRepository {
                 motorhomeToReturn.setModelName(rs.getString(2));
                 motorhomeToReturn.setPricePerDay(rs.getInt(4));
                 motorhomeToReturn.setMaxSeats(rs.getInt(5));
-
             }
         } catch (SQLException s) {
             s.printStackTrace();
@@ -118,12 +113,10 @@ public class MotorhomeRepository {
                 Motorhomes tempMotorhome = new Motorhomes();
                 tempMotorhome.setModelName(rs.getString(1));
                 allMotorhomes.add(tempMotorhome);
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return allMotorhomes;
     }
-
 }

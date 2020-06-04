@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+//Lavet af Christoffer
+
 @Controller
 public class motorhomeController {
 
     private MotorhomeRepository motorhomeRepository;
     public motorhomeController() {motorhomeRepository = new MotorhomeRepository(); }
 
-
     @GetMapping("/motorhomeoverview")
     public String motorhomeOverview(Model model) {
         model.addAttribute("motorhomes", motorhomeRepository.listMotorhomes());
-
         return "motorhomes/motorhomeOverview";
     }
 
@@ -38,8 +38,8 @@ public class motorhomeController {
     @GetMapping("/addtofleet")
     public String addtofleet(Model model){
     model.addAttribute("motorhomes", motorhomeRepository.listModels());
-
-    return "motorhomes/addtofleet";    }
+    return "motorhomes/addtofleet";
+    }
 
     @PostMapping("/addedtofleet")
     public String addedtofleet(@ModelAttribute Motorhomes motorhome){
@@ -72,5 +72,4 @@ public class motorhomeController {
         model.addAttribute("motor", mot);
         return "motorhomes/singlemotorhome";
     }
-
 }

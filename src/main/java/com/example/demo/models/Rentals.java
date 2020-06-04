@@ -4,6 +4,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
+//Lavet af Christoffer
+
 public class Rentals {
 
     public Integer rentalId;
@@ -23,9 +25,7 @@ public class Rentals {
     public int season;
     public int customerid;
 
-
     public Rentals() {
-
     }
 
     public Rentals(Integer rentalId, int motorhomeId, String customerFirstName, String customerLastName, int weekNumber, int totalDays, int pricePerDay, int addedPrice, int totalPrice, Date pickupDate, Date endDate, int phoneNumber, int season, int customerid) {
@@ -85,17 +85,11 @@ public class Rentals {
         this.customerLastName = customerLastName;
     }
 
-    public int getWeekNumber() {
-        return weekNumber;
-    }
+    public int getWeekNumber() { return weekNumber; }
 
-    public void setWeekNumber(int weekNumber) {
-        this.weekNumber = weekNumber;
-    }
+    public void setWeekNumber(int weekNumber) {this.weekNumber = weekNumber; }
 
-    public int getTotalDays() {
-        return totalDays;
-    }
+    public int getTotalDays() { return totalDays; }
 
     public void setTotalDays(int totalDays) {
         this.totalDays = totalDays;
@@ -109,13 +103,9 @@ public class Rentals {
         this.pricePerDay = pricePerDay;
     }
 
-    public int getAddedPrice() {
-        return addedPrice;
-    }
+    public int getAddedPrice() { return addedPrice; }
 
-    public void setAddedPrice(int addedPrice) {
-        this.addedPrice = addedPrice;
-    }
+    public void setAddedPrice(int addedPrice) { this.addedPrice = addedPrice; }
 
     public int getTotalPrice() {
         return totalPrice;
@@ -141,13 +131,9 @@ public class Rentals {
         this.endDate = endDate;
     }
 
-    public int getPhoneNumber() {
-        return phoneNumber;
-    }
+    public int getPhoneNumber() { return phoneNumber; }
 
-    public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+    public void setPhoneNumber(int phoneNumber) { this.phoneNumber = phoneNumber; }
 
     public int getCustomerid() {
         return customerid;

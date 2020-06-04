@@ -16,20 +16,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.time.LocalDate;
 import java.util.Date;
 
+//Lavet af Christoffer
+
 @Controller
 public class rentalController {
     private RentalRepository rentalRepository;
     dateConverter dateconverter = new dateConverter();
     public rentalController(){rentalRepository = new RentalRepository();}
 
-
-@GetMapping("/")
+    @GetMapping("/")
     public String index(Model model){
-
-return "rentals/index";
-
-}
-
+    return "rentals/index";
+    }
 
     @GetMapping("/rentaloverview")
     public String rentalOverview(Model model){
@@ -63,17 +61,4 @@ return "rentals/index";
         rentalRepository.createRental(rentalFromPost, customerFromPost);
         return"redirect:/rentaloverview";
     }
-
-
-/*
-@GetMapping("/motorhomeoverview")
-    public String motorhomeOverview(Model model){
-model.addAttribute("motorhomes", rentalRepository.listMotorhomes());
-
-return "rentals/motorhomeOverview";
-    }
- */
-
-
-
 }

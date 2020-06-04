@@ -11,30 +11,28 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+//Lavet af Christoffer og Per
+
 public class EmployeeRepository {
 
-private Connection conn;
+    private Connection conn;
 
-public EmployeeRepository(){this.conn = DatabaseConnectionManager.getDatabaseConnection();}
+    public EmployeeRepository(){this.conn = DatabaseConnectionManager.getDatabaseConnection();}
 
-public Boolean createEmployee(Employees employee) {
-    try {
-        PreparedStatement createEmployee = conn.prepareStatement("INSERT INTO employees(employeeFirstName, employeeLastName, employeeBirthday, employeeEmail, employeeJob)" + "VALUES(?,?,?,?,?)");
-        createEmployee.setString(1, employee.getEmployeeFirstName());
-        createEmployee.setString(2, employee.getEmployeeLastName());
-        createEmployee.setString(3, employee.getEmployeeBirthday());
-        createEmployee.setString(4, employee.getEmployeeEmail());
-        createEmployee.setString(5, employee.getEmployeeJob());
-        createEmployee.executeUpdate();
-
-
-    } catch (SQLException e) {
-        e.printStackTrace();
+    public Boolean createEmployee(Employees employee) {
+        try {
+            PreparedStatement createEmployee = conn.prepareStatement("INSERT INTO employees(employeeFirstName, employeeLastName, employeeBirthday, employeeEmail, employeeJob)" + "VALUES(?,?,?,?,?)");
+            createEmployee.setString(1, employee.getEmployeeFirstName());
+            createEmployee.setString(2, employee.getEmployeeLastName());
+            createEmployee.setString(3, employee.getEmployeeBirthday());
+            createEmployee.setString(4, employee.getEmployeeEmail());
+            createEmployee.setString(5, employee.getEmployeeJob());
+            createEmployee.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
-    return false;
-
-
-}
 
     public List<Employees> listEmployees(){
     List<Employees> allEmployees =new ArrayList<>();
@@ -55,7 +53,6 @@ public Boolean createEmployee(Employees employee) {
         e.printStackTrace();
     }
     return allEmployees;
-
     }
 
     public boolean delete(int employeeId){
@@ -67,9 +64,7 @@ public Boolean createEmployee(Employees employee) {
             e.printStackTrace();
         }
         return false;
-
     }
-
 
     public Employees read(int employeeId) {
         Employees employeeToReturn = new Employees();
@@ -106,9 +101,5 @@ public Boolean createEmployee(Employees employee) {
             e.printStackTrace();
         }
         return false;
-
     }
-
-
-
 }

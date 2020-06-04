@@ -1,5 +1,7 @@
 package com.example.demo.models;
 
+//Lavet af Christoffer
+
 public class RentalPayment {
 
     int rentalId;
@@ -29,7 +31,6 @@ public class RentalPayment {
     }
 
     public RentalPayment() {
-
     }
 
     public int getRentalId() {

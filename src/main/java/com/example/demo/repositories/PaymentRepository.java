@@ -14,6 +14,8 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
+//Lavet af Christoffer
+
 public class PaymentRepository {
     com.example.demo.util.dateConverter dateConverter = new dateConverter();
     private Connection conn;
@@ -21,7 +23,6 @@ public class PaymentRepository {
     public PaymentRepository() {
         this.conn = DatabaseConnectionManager.getDatabaseConnection();
     }
-
 
     public RentalPayment read(int rentalId) {
         RentalPayment rentalPaymentToReturn = new RentalPayment();
@@ -39,7 +40,6 @@ public class PaymentRepository {
                 rentalPaymentToReturn.setFuelPrice(rs.getInt(6));
                 rentalPaymentToReturn.setKilometersDrivenPrice(rs.getInt(7));
                 rentalPaymentToReturn.setTotalPrice(rs.getInt(8));
-
             }
         } catch (SQLException s) {
             s.printStackTrace();
@@ -61,13 +61,11 @@ public class PaymentRepository {
 
             int days = paymentToReturn.getTotalDays();
             int kilometers = kilometer;
-
             int dropoffprice = days * kilometer;
-
             int ekstrakilometer = (kilometers / days - 400) * days;
             double convertedToDKK = ekstrakilometer * 7.46;
             int gennemsnit = kilometers/days;
-//vi siger der er kørt 4200 kilometer på 10 dage. gennemsnitteligt altså 420 per dag.
+            //vi siger der er kørt 4200 kilometer på 10 dage. gennemsnitteligt altså 420 per dag.
 
             if (gennemsnit > 400) {
                 PreparedStatement addKilometerPrice = conn.prepareStatement("UPDATE rentalpayment" + " SET kilometersDrivenPrice=? WHERE rentalId=?");
@@ -76,8 +74,6 @@ public class PaymentRepository {
                 addKilometerPrice.executeUpdate();
             }
             updateTotalprice(rentalPayment.getRentalId());
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -90,13 +86,10 @@ public class PaymentRepository {
             dropoffPrice.setDouble(1, rental.getKilometersDriven() * 5.22); //converted til kroner
             dropoffPrice.setInt(2, rental.getRentalId());
             dropoffPrice.executeUpdate();
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
         updateTotalprice(rental.getRentalId());
-
     }
 
     public void fuelprice(RentalPayment rental, int rentalId) {
@@ -111,8 +104,6 @@ public class PaymentRepository {
             e.printStackTrace();
         }
         updateTotalprice(rentalId);
-
-
     }
 
     public void cancellationprice(Rentals rentals, int rentalId) throws SQLException {
@@ -165,8 +156,6 @@ public class PaymentRepository {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
     public void updateTotalprice(int rentalId) {
@@ -185,7 +174,6 @@ public class PaymentRepository {
                 rentalpayment.setTotalPrice(pricesrs.getInt(6));
                 rentalpayment.setTotalDays(pricesrs.getInt(7));
                 rentalpayment.setPricePerDay(pricesrs.getInt(8));
-
             }
             int totalpricebase = rentalpayment.getTotalDays() * rentalpayment.getPricePerDay();
             PreparedStatement totalPriceUpdate = conn.prepareStatement("UPDATE rentalpayment" + " SET totalPrice=? WHERE rentalId=?");
@@ -215,28 +203,23 @@ public class PaymentRepository {
 
     public void Accessoriescalculated(Accessories accessories)  {
         RentalPayment paymentToReturn = new RentalPayment();
-
         //Accessories accessoriesToReturn = new Accessories();
-    try {
-        int cykelholder = accessories.getCykelholder();
-        int sengelinned = accessories.getSengelinned();
-        int barnesaede = accessories.getBarnesaede();
-        int picnicbord = accessories.getPicnicbord();
-        int accessoriesprice = (cykelholder * 400) + (sengelinned * 200) + (barnesaede * 200) + (picnicbord * 300);
+        try {
+            int cykelholder = accessories.getCykelholder();
+            int sengelinned = accessories.getSengelinned();
+            int barnesaede = accessories.getBarnesaede();
+            int picnicbord = accessories.getPicnicbord();
+            int accessoriesprice = (cykelholder * 400) + (sengelinned * 200) + (barnesaede * 200) + (picnicbord * 300);
 
+            PreparedStatement addAccessprices = conn.prepareStatement("UPDATE rentalpayment" + " SET accessoriesPrice=? WHERE rentalId=?");
+            addAccessprices.setInt(1, accessoriesprice);
+            addAccessprices.setInt(2, accessories.getRentalId());
+            addAccessprices.executeUpdate();
 
-        PreparedStatement addAccessprices = conn.prepareStatement("UPDATE rentalpayment" + " SET accessoriesPrice=? WHERE rentalId=?");
-        addAccessprices.setInt(1, accessoriesprice);
-        addAccessprices.setInt(2, accessories.getRentalId());
-        addAccessprices.executeUpdate();
-
-        updateTotalprice(accessories.getRentalId());
-
-
-    } catch (SQLException e) {
-        e.printStackTrace();
-
-    }
+            updateTotalprice(accessories.getRentalId());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean updateRentalPayment(RentalPayment rentalPayment) {
@@ -273,8 +256,5 @@ public class PaymentRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
     }
-
 }

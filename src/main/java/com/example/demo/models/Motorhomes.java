@@ -1,5 +1,7 @@
 package com.example.demo.models;
 
+//Lavet af Christoffer
+
 public class Motorhomes {
 
     public int motorhomeId;
@@ -15,7 +17,6 @@ public class Motorhomes {
     }
 
     public Motorhomes() {
-
     }
 
     public int getMotorhomeId() {

@@ -1,12 +1,13 @@
 package com.example.demo.models;
 
+//Lavet af Per & Christoffer
+
 public class Accessories {
     public int cykelholder;
     public  int sengelinned;
     public  int barnesaede;
     public  int picnicbord;
     public Integer rentalId;
-
 
     public Accessories(int cykelholder, int sengelinned, int barnesaede, int picnicbord, Integer rentalId) {
         this.cykelholder = cykelholder;
@@ -15,7 +16,6 @@ public class Accessories {
         this.picnicbord = picnicbord;
         this.rentalId = rentalId;
     }
-
 
     public int getCykelholder() {
         return cykelholder;

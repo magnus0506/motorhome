@@ -2,6 +2,8 @@ package com.example.demo.models;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+//Lavet af Christoffer & Per
+
 public class Employees {
 
 public int employeeId;
@@ -22,9 +24,7 @@ public String employeeJob;
     }
 
     public Employees() {
-
     }
-
 
     public int getEmployeeId() {
         return employeeId;
@@ -73,7 +73,6 @@ public String employeeJob;
     public void setEmployeeJob(String employeeJob) {
         this.employeeJob = employeeJob;
     }
-
 
     @Override
     public String toString() {

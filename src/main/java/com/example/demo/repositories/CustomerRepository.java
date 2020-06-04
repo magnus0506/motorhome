@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//Lavet af Magnus
+//Lavet af Magnus & Christoffer
 public class CustomerRepository {
 
     private Connection conn;

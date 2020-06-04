@@ -14,12 +14,14 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RentalRepository {
-    sqlDateConverter sqlconverter = new sqlDateConverter();
-    private Connection conn;
-    dateConverter dateconverter = new dateConverter();
-    public RentalRepository(){this.conn = DatabaseConnectionManager.getDatabaseConnection();}
+//Lavet af Christoffer
 
+public class RentalRepository {
+    private Connection conn;
+    sqlDateConverter sqlconverter = new sqlDateConverter();
+    dateConverter dateconverter = new dateConverter();
+
+    public RentalRepository(){this.conn = DatabaseConnectionManager.getDatabaseConnection();}
 
     public List<Rentals> listRentals(){
         List<Rentals> allRentals = new ArrayList<>();
@@ -38,7 +40,6 @@ public class RentalRepository {
                 tempRental.setTotalPrice(rs.getInt(8));
                 tempRental.setMotorhomeId(rs.getInt(9));
                 allRentals.add(tempRental);
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -46,27 +47,24 @@ public class RentalRepository {
         return allRentals;
     }
 
-
-
-
     public List<Motorhomes> searchForRental(int maxSeats, int pricePerDay, Date pickupDate, Date endDate){
         List<Motorhomes> searchedMotorHomes = new ArrayList<>();
         //denne metode tager 4 forskellige parametre, og søger i motorhome tabellen efter passende resultater.
         try{
-
-            //PreparedStatement searchForCar = conn.prepareStatement("select a.motorhomeId, pricePerDay, maxSeats, modelName from motorhomes a left outer join rentals b on a.motorhomeId = b.motorhomeId and b.enddate >= ? and b.pickupdate <= ? where maxSeats =? AND pricePerDay <=? AND b.motorhomeId is null");
-            PreparedStatement searchForCar = conn.prepareStatement("select a.motorhomeId, pricePerDay, maxSeats, a.modelName from motorhomes a " +
+            PreparedStatement searchForCar = conn.prepareStatement(
+                    "SELECT a.motorhomeId, pricePerDay, maxSeats, a.modelName FROM motorhomes a " +
                     "INNER JOIN motorhomemodels ON a.modelName = motorhomemodels.modelName " +
-                    "left outer join rentals b on a.motorhomeId = b.motorhomeId and b.enddate >= ? and b.pickupdate <= ? where maxSeats =? AND pricePerDay <=? AND b.motorhomeId is null");
+                    "LEFT OUTER JOIN rentals b ON a.motorhomeId = b.motorhomeId " +
+                            "AND b.enddate >= ?" +
+                            "AND b.pickupdate <= ? " +
+                            "WHERE maxSeats =? AND pricePerDay <=? AND b.motorhomeId IS NULL");
             // ^denne query er opdateret med de nye tabeller
-            //denne SQL query filtrer alle de motorhomes som står i vores rentals tabel der "infringer" de givene datoer, og som har passende seats(senge) og en pris der er lig med eller under kravet.
-
+            //denne SQL query filtrer alle de motorhomes som står i vores rentals tabel der "infringer" de givene datoer
+            // og som har passende seats(senge) og en pris der er lig med eller under kravet.
             searchForCar.setDate(1, pickupDate);
             searchForCar.setDate(2, endDate);
             searchForCar.setInt(3, maxSeats);
             searchForCar.setInt(4, pricePerDay);
-
-
 
             ResultSet rs = searchForCar.executeQuery();
             while(rs.next()){
@@ -76,15 +74,12 @@ public class RentalRepository {
             tempMotorHome.setMaxSeats(rs.getInt(3));
             tempMotorHome.setModelName(rs.getString(4));
             searchedMotorHomes.add(tempMotorHome);
-
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return searchedMotorHomes;
-
-
     }
 
     public Motorhomes readMotorhome(int motorhomeId) {
@@ -112,9 +107,7 @@ public class RentalRepository {
         java.sql.Date endDate = new java.sql.Date(rental.getEndDate().getTime());
         Rentals rentaltoreturn = new Rentals();
 
-
         try{
-
             PreparedStatement createRentalCustomer = conn.prepareStatement("INSERT INTO customers(customerFirstName, customerLastName, customerBirthday, customerEmail, customerDriversLicense)"
                     + "VALUES(?,?,?,?,?);");
             createRentalCustomer.setString(1, customer.getCustomerFirstName());
@@ -131,7 +124,6 @@ public class RentalRepository {
                 rentaltoreturn.setCustomerid(customerid.getInt(1));
             }
 
-
             PreparedStatement createRental = conn.prepareStatement("INSERT INTO rentals(motorhomeId, totalDays, pickupDate, endDate, customerId)" + "VALUES(?,?,?,?,?)");
             //createRental.setInt( 1, rental.getRentalId());
 
@@ -145,8 +137,6 @@ public class RentalRepository {
             createRental.setDate(4, endDate);
             createRental.setInt(5, rentaltoreturn.getCustomerid()); //dette er maxcustomer ID, altså det customerID der lige er blevet genereret i customer querien.
             createRental.executeUpdate();
-
-
 
             if(rental.getSeason() == 1){ //der vælges en season i formen, og prisen ændres afhængigt af hvilken season det er.
                 double priceperday = rental.getPricePerDay() * 1.60;
@@ -172,10 +162,6 @@ public class RentalRepository {
                 createRentalPrices.setDouble(1, priceperday);
                 createRentalPrices.setDouble(2, priceperday * noOfDaysBetweenInclusive);
                 createRentalPrices.executeUpdate();}
-
-
-
-
         } catch (SQLException e){
             e.printStackTrace();
         }
@@ -226,7 +212,4 @@ public class RentalRepository {
             e.printStackTrace();
         }
     }
-
-
-
 }

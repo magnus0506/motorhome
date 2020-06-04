@@ -52,10 +52,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return NoOpPasswordEncoder.getInstance();
     }
 }
-
     //BCryptEncoder der ikke er blevet implementeret
-
-    /*int strength = 10; // work factor of bcrypt
+    /*
+    int strength = 10; // work factor of bcrypt
     BCryptPasswordEncoder bCryptPasswordEncoder =
             new BCryptPasswordEncoder(strength, new SecureRandom());
-    String encodedPassword = bCryptPasswordEncoder.encode(plainPassword); */
+    */

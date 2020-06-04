@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-//Lavet af Magnus
+//Lavet af Magnus & Christoffer
 
 @Controller
 public class CustomerController{

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.SQLException;
 
+//Lavet af Christoffer
+
 @Controller
 public class paymentController {
 
@@ -24,17 +26,11 @@ public class paymentController {
         paymentRepository = new PaymentRepository();
     }
 
-    private RentalRepository rentalRepository;
-
-
     @GetMapping("/individualpriceoverview")
     public String getRentalPaymentByParameter(@RequestParam int rentalId, Model model) {
         RentalPayment tempRentalPayment = paymentRepository.read(rentalId);
         model.addAttribute("payment", tempRentalPayment);
-
         return "payment/individualPriceOverview";
-
-
     }
 
     @GetMapping("/kilometerprice")
@@ -92,7 +88,6 @@ public class paymentController {
     @GetMapping("/accessoriesprice")
     public String accessoriesPrice(@RequestParam int rentalId, Model model) {
         model.addAttribute("rentalid", rentalId);
-
         return "payment/accessoriesprice";
     }
 
@@ -101,7 +96,6 @@ public class paymentController {
         paymentRepository.Accessoriescalculated(accessoriesfromPost);
         // paymentRepository.calculateDropoffPrice(paymentFromPost);
         return "redirect:/rentaloverview";
-
     }
 
     @GetMapping("/updatepayment")
@@ -121,8 +115,6 @@ public class paymentController {
     public String deleteRentalAndPayment(@RequestParam int rentalId) {
         paymentRepository.deleteRentalAndPayment(rentalId);
         return "redirect:/rentaloverview";
-
     }
-
 }
 

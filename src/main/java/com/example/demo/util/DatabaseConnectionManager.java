@@ -8,6 +8,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+//Lavet af Christoffer
+
 public class DatabaseConnectionManager {
     private static String user;
     private static String password;

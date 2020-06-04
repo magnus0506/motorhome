@@ -1,6 +1,7 @@
 package com.example.demo.models;
 
-//Lavet af Magnus
+//Lavet af Magnus & Christoffer
+
 public class Customers {
 
     public int customerId;
@@ -9,7 +10,6 @@ public class Customers {
     public String customerBirthday;
     public String customerEmail;
     public int customerDriversLicense;
-
 
     public Customers(int customerId, String customerFirstName, String customerLastName, String customerBirthday, String customerEmail, int customerDriversLicense) {
         this.customerId = customerId;
@@ -21,7 +21,6 @@ public class Customers {
     }
 
     public Customers() {
-
     }
 
     public int getCustomerId() {

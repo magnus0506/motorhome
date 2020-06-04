@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.PreparedStatement;
 
+//Lavet af Christoffer og Per
+
 @Controller
 public class employeeController {
 
@@ -21,9 +23,7 @@ public employeeController(){employeeRepository = new EmployeeRepository();}
 @GetMapping("/employees")
     public String employees(Model model){
     model.addAttribute("employeelist", employeeRepository.listEmployees());
-
-
-    return "employees/employees";
+        return "employees/employees";
 }
 
 @GetMapping("/createemployee")

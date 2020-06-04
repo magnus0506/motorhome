@@ -5,6 +5,8 @@ import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
+//Lavet af Christoffer
+
 public class dateConverter {
     int daysbetween;
 
@@ -18,5 +20,4 @@ public class dateConverter {
         ChronoUnit.DAYS.between(date1, date2);
         return daysbetween;
     }
-
 }
