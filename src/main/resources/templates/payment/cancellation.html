@@ -54,8 +54,9 @@
         <label for="rentalId">Rental ID:</label><br>
         <input type="text" name="rentalId" id="rentalId" th:value="${rentalid}">
         <br>
-        <label for="pickupDate">Start Date:</label><br>
-        <input type="text" name="pickupDate" id="pickupDate"  >
+        <label for="pickupDate">Pickup Date: yyyy/mm/dd</label><br>
+        <input type="text" name="pickupDate" id="pickupDate" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])"
+        >
         <br>
         <button type="submit" name="submit" button class="btn btn-create">Calculate</button>
     </form>
