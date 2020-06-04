@@ -47,25 +47,26 @@
 </div>
 
 <div class="container">
-    <form action="/accessoriespricecalculated" method="post">
 
+      <form action="/accessoriespricecalculated" method="post">
         <H3>Choose Accessories</H3>
         <label for="rentalId">Rental ID:</label><br>
         <input type="number" name="rentalId" id="rentalId" th:value="${rentalid}">
         <br>
         <label for="cykelholder">Bikemount 400 kr</label>
-        <input type="number" id="cykelholder"  name="cykelholder">
+        <input type="number" id="cykelholder"  name="cykelholder" value="0">
         <br>
         <label for="sengelinned" class="inlinelabel">Bed Cover For All Beds - 200 kr</label>
-        <input type="number"  id="sengelinned" name="sengelinned">
+        <input type="number"  id="sengelinned" name="sengelinned" value="0">
         <br>
         <label for="barnesaede">Child Seat 200 kr</label>
-        <input type="number" id="barnesaede" name="barnesaede">
+        <input type="number" id="barnesaede" name="barnesaede" value="0">
         <br>
         <label for="picnicbord" class="inlinelabel">Picnicbord Table With Chairs - 300 kr</label>
-        <input type="number" id="picnicbord" name="picnicbord">
+        <input type="number" id="picnicbord" name="picnicbord" value="0">
         <input type="submit" name="submit">
     </form>
+
     <!--    <ul>
             <li th:each="payment : ${payments}">
                 <span th:text="${payment.cykelholder}"></span><br>
